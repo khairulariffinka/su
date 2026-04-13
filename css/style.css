@@ -726,7 +726,13 @@ body {
     .main-content {
         margin-left: 0;
         padding: 15px;
-        padding-bottom: 80px; /* Space for bottom nav */
+        padding-bottom: 90px;
+        overflow-x: hidden;
+    }
+    
+    /* Page wrapper for scrolling */
+    .page {
+        overflow-x: hidden;
     }
     
     /* Page Header */
@@ -737,7 +743,8 @@ body {
     }
     
     .page-header h1 {
-        font-size: 22px;
+        font-size: 18px;
+        margin: 0;
     }
     
     .page-header h1 i {
@@ -764,27 +771,27 @@ body {
     /* Stats Grid - 2 Columns on Mobile */
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+        gap: 10px;
     }
     
     .stat-card {
-        padding: 15px;
+        padding: 12px;
         flex-direction: column;
         text-align: center;
     }
     
     .stat-icon {
-        width: 45px;
-        height: 45px;
-        font-size: 20px;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
     }
     
     .stat-info h3 {
-        font-size: 11px;
+        font-size: 10px;
     }
     
     .stat-value {
-        font-size: 20px;
+        font-size: 18px;
     }
     
     /* Dashboard Grid */
@@ -793,20 +800,43 @@ body {
         gap: 12px;
     }
     
+    .dashboard-card {
+        overflow: hidden;
+    }
+    
+    .dashboard-card h2 {
+        font-size: 14px;
+        padding: 12px 15px;
+    }
+    
+    .card-content {
+        padding: 12px;
+        font-size: 12px;
+    }
+    
     /* Tables - Scrollable with fixed first column */
     .table-container {
         overflow-x: auto;
+        overflow-y: visible;
         -webkit-overflow-scrolling: touch;
+        margin: 0 -15px;
+        padding: 0 15px;
     }
     
     .data-table {
-        min-width: 600px;
-        font-size: 13px;
+        min-width: 100%;
+        font-size: 12px;
+        table-layout: fixed;
+        word-wrap: break-word;
     }
     
     .data-table th,
     .data-table td {
-        padding: 10px 8px;
+        padding: 10px 6px;
+        max-width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
     
     /* Buttons - Larger Touch Targets */
@@ -1008,10 +1038,10 @@ body {
 .bottom-nav-items {
     display: flex;
     justify-content: space-around;
+    align-items: center;
     list-style: none;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    padding: 0 5px;
+    padding: 0 2px;
+    margin: 0;
 }
 
 .bottom-nav-items li {
@@ -1022,23 +1052,26 @@ body {
 .bottom-nav-item {
     flex: 1;
     text-align: center;
+    margin: 0 2px;
 }
 
 .bottom-nav-item a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 8px;
+    justify-content: center;
+    padding: 6px 4px;
     color: rgba(255, 255, 255, 0.6);
     text-decoration: none;
-    font-size: 10px;
+    font-size: 9px;
     transition: all 0.2s ease;
-    border-radius: 8px;
+    border-radius: 6px;
     min-height: 50px;
+    width: 100%;
 }
 
 .bottom-nav-item a i {
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 2px;
 }
 
@@ -1056,15 +1089,6 @@ body {
 @media (max-width: 767px) {
     .bottom-nav {
         display: block;
-    }
-    
-    .hamburger {
-        display: flex;
-    }
-    
-    .main-content {
-        padding-top: 70px;
-        padding-bottom: 80px;
     }
 }
 
