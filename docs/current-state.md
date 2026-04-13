@@ -1,7 +1,7 @@
 # ServiceBiz - Current State
 
 > **Last Updated:** 2026-04-13
-> **Status:** IN PROGRESS
+> **Status:** COMPLETE
 
 ---
 
@@ -11,7 +11,8 @@
 |-------|-------|
 | **Project Name** | ServiceBiz |
 | **Type** | Service Business Management System |
-| **Status** | Development Complete - Ready for Deployment |
+| **Status** | ✅ Complete & Deployed |
+| **Live URL** | https://khairulariffinka.github.io/su/ |
 | **Started** | 2026-04-13 |
 
 ---
