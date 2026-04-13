@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498db"/>
+      <stop offset="100%" style="stop-color:#2c3e50"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="512" height="512" rx="100" fill="url(#bg)"/>
+  <!-- Briefcase Icon -->
+  <g fill="#fff" transform="translate(128, 140)">
+    <rect x="32" y="80" width="192" height="140" rx="16"/>
+    <path d="M96 80 V40 a48 48 0 0 1 96 0 v40"/>
+    <rect x="80" y="110" width="40" height="80" rx="4"/>
+    <rect x="232" y="110" width="40" height="80" rx="4"/>
+  </g>
+  <!-- Checkmark -->
+  <g fill="#2ecc71" transform="translate(380, 380)">
+    <circle cx="30" cy="30" r="30"/>
+    <path d="M18 30 l10 10 l20 -20" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

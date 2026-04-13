@@ -2,8 +2,33 @@
 <html lang="ms">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ServiceBiz - Sistem Pengurusan Bisnes Servis</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="Sistem Pengurusan Bisnes Servis - Customer, Servis, Temu Janji & Invois">
+    <meta name="theme-color" content="#3498db">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="ServiceBiz">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Favicon & Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="icons/icon-96x96.png">
+    <link rel="apple-touch-icon" href="icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180x180.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Styles -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -491,7 +516,140 @@
     <!-- Toast Notifications -->
     <div id="toastContainer" class="toast-container"></div>
 
+    <!-- Hamburger Menu (Mobile) -->
+    <button class="hamburger" onclick="toggleMobileMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Sidebar Overlay (Mobile) -->
+    <div class="sidebar-overlay" onclick="closeMobileMenu()"></div>
+
+    <!-- Bottom Navigation (Mobile) -->
+    <nav class="bottom-nav">
+        <ul class="bottom-nav-items">
+            <li class="bottom-nav-item active" data-page="dashboard">
+                <a href="#dashboard" onclick="navigateToMobile('dashboard')">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="bottom-nav-item" data-page="customers">
+                <a href="#customers" onclick="navigateToMobile('customers')">
+                    <i class="fas fa-users"></i>
+                    <span>Customers</span>
+                </a>
+            </li>
+            <li class="bottom-nav-item" data-page="appointments">
+                <a href="#appointments" onclick="navigateToMobile('appointments')">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Temu Janji</span>
+                </a>
+            </li>
+            <li class="bottom-nav-item" data-page="settings">
+                <a href="#settings" onclick="navigateToMobile('settings')">
+                    <i class="fas fa-cog"></i>
+                    <span>Tetapan</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- PWA Install Prompt -->
+    <div id="pwaInstallPrompt" class="pwa-install-prompt">
+        <i class="fas fa-download"></i>
+        <div class="pwa-install-prompt-text">
+            <h4>Install App</h4>
+            <p>Add to home screen untuk offline access</p>
+        </div>
+        <button class="btn btn-primary" onclick="installPWA()">Install</button>
+        <button class="btn btn-secondary" onclick="closePWAInstallPrompt()" style="padding: 8px;">&times;</button>
+    </div>
+
     <!-- Scripts -->
     <script src="js/app.js"></script>
+    <script src="js/sw.js"></script>
+    <script>
+        // PWA Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('js/sw.js')
+                    .then((reg) => {
+                        console.log('ServiceWorker registered:', reg.scope);
+                    })
+                    .catch((err) => {
+                        console.log('ServiceWorker registration failed:', err);
+                    });
+            });
+        }
+
+        // PWA Install Prompt
+        let deferredPrompt;
+        const pwaInstallPrompt = document.getElementById('pwaInstallPrompt');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            pwaInstallPrompt.classList.add('show');
+        });
+
+        function installPWA() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((result) => {
+                    if (result.outcome === 'accepted') {
+                        console.log('PWA installed');
+                    }
+                    closePWAInstallPrompt();
+                });
+            }
+        }
+
+        function closePWAInstallPrompt() {
+            pwaInstallPrompt.classList.remove('show');
+        }
+
+        // Mobile Navigation Functions
+        function toggleMobileMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            
+            hamburger.classList.toggle('active');
+            sidebar.classList.toggle('mobile-open');
+            overlay.classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            
+            hamburger.classList.remove('active');
+            sidebar.classList.remove('mobile-open');
+            overlay.classList.remove('active');
+        }
+
+        function navigateToMobile(pageId) {
+            closeMobileMenu();
+            setTimeout(() => {
+                navigateTo(pageId);
+            }, 100);
+        }
+
+        // Detect mobile and add class
+        if (window.innerWidth < 768) {
+            document.body.classList.add('is-mobile');
+        }
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth < 768) {
+                document.body.classList.add('is-mobile');
+            } else {
+                document.body.classList.remove('is-mobile');
+            }
+        });
+    </script>
 </body>
 </html>

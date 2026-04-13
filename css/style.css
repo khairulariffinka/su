@@ -712,44 +712,513 @@ body {
     color: var(--gray);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* ============================================
+   MOBILE RESPONSIVE STYLES
+   ============================================ */
+
+/* Base Mobile Styles */
+@media (max-width: 767px) {
+    /* Hide desktop sidebar */
     .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
+        display: none;
     }
     
     .main-content {
         margin-left: 0;
+        padding: 15px;
+        padding-bottom: 80px; /* Space for bottom nav */
     }
     
+    /* Page Header */
     .page-header {
         flex-direction: column;
-        gap: 15px;
+        gap: 12px;
         align-items: flex-start;
+    }
+    
+    .page-header h1 {
+        font-size: 22px;
+    }
+    
+    .page-header h1 i {
+        display: none;
     }
     
     .header-actions {
         width: 100%;
         flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    /* Search Box - Full Width on Mobile */
+    .search-box {
+        width: 100%;
     }
     
     .search-box input {
         width: 100%;
+        padding: 12px 12px 12px 35px;
+        font-size: 16px; /* Prevent zoom on iOS */
     }
     
+    /* Stats Grid - 2 Columns on Mobile */
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .stat-card {
+        padding: 15px;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .stat-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+    
+    .stat-info h3 {
+        font-size: 11px;
+    }
+    
+    .stat-value {
+        font-size: 20px;
+    }
+    
+    /* Dashboard Grid */
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    /* Tables - Scrollable with fixed first column */
+    .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .data-table {
+        min-width: 600px;
+        font-size: 13px;
+    }
+    
+    .data-table th,
+    .data-table td {
+        padding: 10px 8px;
+    }
+    
+    /* Buttons - Larger Touch Targets */
+    .btn {
+        padding: 12px 18px;
+        font-size: 14px;
+        min-height: 44px; /* Minimum touch target */
+    }
+    
+    .btn-sm {
+        padding: 10px 14px;
+        font-size: 13px;
+    }
+    
+    /* Action Buttons */
+    .table-actions {
+        gap: 4px;
+    }
+    
+    .action-btn {
+        padding: 8px 12px;
+        font-size: 14px;
+        min-width: 36px;
+        min-height: 36px;
+    }
+    
+    /* Filter Tabs - Scrollable */
+    .filter-tabs {
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 8px;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .filter-tab {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+    
+    /* Modal - Full Screen on Mobile */
+    .modal {
+        align-items: flex-end;
+    }
+    
+    .modal.active {
+        display: flex;
+    }
+    
+    .modal-content {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 20px 20px 0 0;
+        max-height: 90vh;
+        margin: 0;
+    }
+    
+    .modal-body {
+        padding: 15px;
+    }
+    
+    .modal-header {
+        padding: 15px;
+    }
+    
+    .modal-footer {
+        padding: 15px;
+        flex-wrap: wrap;
+    }
+    
+    .modal-footer .btn {
+        flex: 1;
+        justify-content: center;
+    }
+    
+    /* Form Elements */
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 12px;
+        font-size: 16px; /* Prevent zoom */
+    }
+    
+    .form-group label {
+        font-size: 14px;
+    }
+    
+    /* Settings */
+    .settings-section {
+        padding: 15px;
+    }
+    
+    .settings-section h2 {
+        font-size: 16px;
+    }
+    
+    /* Invoice */
+    .invoice-preview {
+        padding: 15px;
+    }
+    
+    .invoice-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .invoice-filters {
+        flex-direction: column;
+    }
+    
+    .invoice-filters select,
+    .invoice-filters input {
+        width: 100%;
+    }
+    
+    /* Toast */
+    .toast-container {
+        top: auto;
+        bottom: 80px;
+        left: 10px;
+        right: 10px;
+    }
+    
+    .toast {
+        width: 100%;
+        min-width: auto;
+    }
+    
+    /* Empty State */
+    .empty-state {
+        padding: 30px 15px;
+    }
+    
+    .empty-state i {
+        font-size: 36px;
+    }
+    
+    .empty-state p {
+        font-size: 14px;
+    }
+}
+
+/* Extra Small Devices */
+@media (max-width: 480px) {
     .stats-grid {
         grid-template-columns: 1fr;
     }
     
-    .dashboard-grid {
-        grid-template-columns: 1fr;
+    .page-header h1 {
+        font-size: 20px;
+    }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .sidebar {
+        width: 200px;
     }
     
-    .modal-content {
-        width: 95%;
-        margin: 10px;
+    .main-content {
+        margin-left: 200px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Large Desktop */
+@media (min-width: 1200px) {
+    .main-content {
+        padding: 30px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ============================================
+   BOTTOM NAVIGATION (MOBILE)
+   ============================================ */
+.bottom-nav {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--dark);
+    padding: 8px 0;
+    padding-bottom: calc(8px + env(safe-area-inset-bottom));
+    z-index: 1000;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.bottom-nav-items {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+}
+
+.bottom-nav-item {
+    flex: 1;
+    text-align: center;
+}
+
+.bottom-nav-item a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 10px;
+    transition: all 0.2s ease;
+    border-radius: 8px;
+    min-height: 50px;
+}
+
+.bottom-nav-item a i {
+    font-size: 20px;
+    margin-bottom: 2px;
+}
+
+.bottom-nav-item.active a,
+.bottom-nav-item:hover a {
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.bottom-nav-item.active a {
+    color: var(--primary);
+}
+
+/* Mobile Breakpoint */
+@media (max-width: 767px) {
+    .bottom-nav {
+        display: block;
+    }
+}
+
+/* ============================================
+   HAMBURGER MENU (MOBILE)
+   ============================================ */
+.hamburger {
+    display: none;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1001;
+    width: 44px;
+    height: 44px;
+    background: var(--dark);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--white);
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+@media (max-width: 767px) {
+    .hamburger {
+        display: flex;
+    }
+    
+    .main-content {
+        padding-top: 70px;
+    }
+}
+
+/* ============================================
+   MOBILE SIDEBAR OVERLAY
+   ============================================ */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+@media (max-width: 767px) {
+    .sidebar-overlay.active {
+        display: block;
+    }
+    
+    .sidebar.mobile-open {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 280px;
+        height: 100vh;
+        z-index: 1000;
+        animation: slideInLeft 0.3s ease;
+    }
+    
+    @keyframes slideInLeft {
+        from { transform: translateX(-100%); }
+        to { transform: translateX(0); }
+    }
+}
+
+/* ============================================
+   PWA INSTALL PROMPT
+   ============================================ */
+.pwa-install-prompt {
+    display: none;
+    position: fixed;
+    bottom: 80px;
+    left: 15px;
+    right: 15px;
+    background: var(--dark);
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    z-index: 3000;
+    animation: slideUp 0.3s ease;
+}
+
+.pwa-install-prompt.show {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.pwa-install-prompt i {
+    font-size: 24px;
+    color: var(--primary);
+}
+
+.pwa-install-prompt-text {
+    flex: 1;
+}
+
+.pwa-install-prompt-text h4 {
+    font-size: 14px;
+    color: var(--white);
+    margin-bottom: 2px;
+}
+
+.pwa-install-prompt-text p {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.pwa-install-prompt .btn {
+    padding: 8px 12px;
+    font-size: 12px;
+}
+
+@media (min-width: 768px) {
+    .pwa-install-prompt {
+        bottom: 20px;
+        left: 20px;
+        right: auto;
+        max-width: 350px;
+    }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* ============================================
+   SAFE AREA SUPPORT
+   ============================================ */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .bottom-nav {
+        padding-bottom: calc(8px + env(safe-area-inset-bottom));
+    }
+    
+    .main-content {
+        padding-bottom: calc(20px + env(safe-area-inset-bottom));
     }
 }
 
