@@ -1009,6 +1009,14 @@ body {
     display: flex;
     justify-content: space-around;
     list-style: none;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 5px;
+}
+
+.bottom-nav-items li {
+    flex: 1;
+    min-width: 0;
 }
 
 .bottom-nav-item {
@@ -1048,6 +1056,15 @@ body {
 @media (max-width: 767px) {
     .bottom-nav {
         display: block;
+    }
+    
+    .hamburger {
+        display: flex;
+    }
+    
+    .main-content {
+        padding-top: 70px;
+        padding-bottom: 80px;
     }
 }
 
@@ -1092,16 +1109,6 @@ body {
 
 .hamburger.active span:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -5px);
-}
-
-@media (max-width: 767px) {
-    .hamburger {
-        display: flex;
-    }
-    
-    .main-content {
-        padding-top: 70px;
-    }
 }
 
 /* ============================================

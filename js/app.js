@@ -70,16 +70,37 @@ function setupNavigation() {
             navigateTo(pageId);
         });
     });
+    
+    // Also setup bottom nav items
+    const bottomNavItems = document.querySelectorAll('.bottom-nav-item');
+    bottomNavItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            const pageId = this.getAttribute('data-page');
+            navigateTo(pageId);
+        });
+    });
 }
 
 function navigateTo(pageId) {
-    // Update nav active state
+    // Update desktop nav active state
     document.querySelectorAll('.nav-item').forEach(item => {
         item.classList.remove('active');
         if (item.getAttribute('data-page') === pageId) {
             item.classList.add('active');
         }
     });
+    
+    // Update bottom nav active state on mobile
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) {
+        document.querySelectorAll('.bottom-nav-item').forEach(item => {
+            item.classList.remove('active');
+            if (item.getAttribute('data-page') === pageId) {
+                item.classList.add('active');
+            }
+        });
+    }
     
     // Show page
     document.querySelectorAll('.page').forEach(page => {
@@ -101,6 +122,22 @@ function navigateTo(pageId) {
     } else if (pageId === 'settings') {
         loadSettingsPage();
     }
+    
+    // Close mobile menu if open
+    if (window.innerWidth < 768) {
+        closeMobileMenu();
+    }
+}
+
+// Mobile menu functions
+function closeMobileMenu() {
+    const hamburger = document.querySelector('.hamburger');
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.sidebar-overlay');
+    
+    if (hamburger) hamburger.classList.remove('active');
+    if (sidebar) sidebar.classList.remove('mobile-open');
+    if (overlay) overlay.classList.remove('active');
 }
 
 // ==================== Event Listeners ====================

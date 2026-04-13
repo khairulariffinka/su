@@ -530,27 +530,33 @@
     <nav class="bottom-nav">
         <ul class="bottom-nav-items">
             <li class="bottom-nav-item active" data-page="dashboard">
-                <a href="#dashboard" onclick="navigateToMobile('dashboard')">
+                <a href="#dashboard">
                     <i class="fas fa-chart-pie"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
             <li class="bottom-nav-item" data-page="customers">
-                <a href="#customers" onclick="navigateToMobile('customers')">
+                <a href="#customers">
                     <i class="fas fa-users"></i>
                     <span>Customers</span>
                 </a>
             </li>
+            <li class="bottom-nav-item" data-page="services">
+                <a href="#services">
+                    <i class="fas fa-tools"></i>
+                    <span>Servis</span>
+                </a>
+            </li>
             <li class="bottom-nav-item" data-page="appointments">
-                <a href="#appointments" onclick="navigateToMobile('appointments')">
+                <a href="#appointments">
                     <i class="fas fa-calendar-alt"></i>
                     <span>Temu Janji</span>
                 </a>
             </li>
-            <li class="bottom-nav-item" data-page="settings">
-                <a href="#settings" onclick="navigateToMobile('settings')">
-                    <i class="fas fa-cog"></i>
-                    <span>Tetapan</span>
+            <li class="bottom-nav-item" data-page="invoices">
+                <a href="#invoices">
+                    <i class="fas fa-file-invoice"></i>
+                    <span>Invois</span>
                 </a>
             </li>
         </ul>
@@ -610,44 +616,27 @@
             pwaInstallPrompt.classList.remove('show');
         }
 
-        // Mobile Navigation Functions
+        // Detect mobile
+        function checkMobile() {
+            return window.innerWidth < 768;
+        }
+        
+        // Handle hamburger menu
         function toggleMobileMenu() {
             const hamburger = document.querySelector('.hamburger');
             const sidebar = document.querySelector('.sidebar');
             const overlay = document.querySelector('.sidebar-overlay');
             
-            hamburger.classList.toggle('active');
-            sidebar.classList.toggle('mobile-open');
-            overlay.classList.toggle('active');
+            if (hamburger) hamburger.classList.toggle('active');
+            if (sidebar) sidebar.classList.toggle('mobile-open');
+            if (overlay) overlay.classList.toggle('active');
         }
 
-        function closeMobileMenu() {
-            const hamburger = document.querySelector('.hamburger');
-            const sidebar = document.querySelector('.sidebar');
-            const overlay = document.querySelector('.sidebar-overlay');
-            
-            hamburger.classList.remove('active');
-            sidebar.classList.remove('mobile-open');
-            overlay.classList.remove('active');
-        }
-
-        function navigateToMobile(pageId) {
-            closeMobileMenu();
-            setTimeout(() => {
-                navigateTo(pageId);
-            }, 100);
-        }
-
-        // Detect mobile and add class
-        if (window.innerWidth < 768) {
-            document.body.classList.add('is-mobile');
-        }
-
-        window.addEventListener('resize', () => {
-            if (window.innerWidth < 768) {
-                document.body.classList.add('is-mobile');
-            } else {
-                document.body.classList.remove('is-mobile');
+        // Handle resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 768) {
+                // Close mobile menu when switching to desktop
+                closeMobileMenu();
             }
         });
     </script>
