@@ -516,13 +516,6 @@
     <!-- Toast Notifications -->
     <div id="toastContainer" class="toast-container"></div>
 
-    <!-- Hamburger Menu (Mobile) -->
-    <button class="hamburger" onclick="toggleMobileMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
-
     <!-- Sidebar Overlay (Mobile) -->
     <div class="sidebar-overlay" onclick="closeMobileMenu()"></div>
 
@@ -557,6 +550,12 @@
                 <a href="#invoices">
                     <i class="fas fa-file-invoice"></i>
                     <span>Invois</span>
+                </a>
+            </li>
+            <li class="bottom-nav-item" data-page="settings">
+                <a href="#settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Tetapan</span>
                 </a>
             </li>
         </ul>
@@ -616,29 +615,6 @@
             pwaInstallPrompt.classList.remove('show');
         }
 
-        // Detect mobile
-        function checkMobile() {
-            return window.innerWidth < 768;
-        }
-        
-        // Handle hamburger menu
-        function toggleMobileMenu() {
-            const hamburger = document.querySelector('.hamburger');
-            const sidebar = document.querySelector('.sidebar');
-            const overlay = document.querySelector('.sidebar-overlay');
-            
-            if (hamburger) hamburger.classList.toggle('active');
-            if (sidebar) sidebar.classList.toggle('mobile-open');
-            if (overlay) overlay.classList.toggle('active');
-        }
-
-        // Handle resize
-        window.addEventListener('resize', function() {
-            if (window.innerWidth >= 768) {
-                // Close mobile menu when switching to desktop
-                closeMobileMenu();
-            }
-        });
-    </script>
+        </script>
 </body>
 </html>
